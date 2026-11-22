@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\My Repositories\\ConsoleApp-Game-Engine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\core\\gameloop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\core\\gameloop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\scene\\scenemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,17 +58,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GameEngine.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\GameEngine.cs",
               "RelativeDocumentMoniker": "src\\GameEngine.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\GameEngine.cs",
               "RelativeToolTip": "src\\GameEngine.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABUAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:59:59.069Z",
               "IsPinned": true,
@@ -76,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GameLoop.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Core\\GameLoop.cs",
               "RelativeDocumentMoniker": "src\\Core\\GameLoop.cs",
@@ -99,8 +99,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:56:55.678Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -113,8 +112,7 @@
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:51:03.729Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -127,8 +125,7 @@
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:57:43.227Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -141,8 +138,7 @@
               "ViewState": "AgIAABUAAAAAAAAAAAAAADIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:54:02.157Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -155,8 +151,7 @@
               "ViewState": "AgIAAA8AAAAAAAAAAAAAACwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:59:25.032Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -169,8 +164,7 @@
               "ViewState": "AgIAAKAAAAAAAAAAAAAwwMMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:56:27.805Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -183,8 +177,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:57:59.727Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -197,8 +190,7 @@
               "ViewState": "AgIAAFoAAAAAAAAAAAAAABMAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:55:55.162Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -211,8 +203,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T09:22:50.404Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -225,8 +216,7 @@
               "ViewState": "AgIAABgAAAAAAAAAAAAAAEkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T09:45:07.35Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             }
           ]
         }
