@@ -4,178 +4,194 @@ namespace ConsoleGameEngine
 {
     public sealed class ScreenManager
     {
-        private ScreenCell[,] _backBuffer = new ScreenCell[1, 1];
-        private ScreenCell[,] _frontBuffer = new ScreenCell[1, 1];
-        private bool _forceFullRedraw = true;
+        private readonly char[,] _frontChar;
+        private readonly char[,] _backChar;
+        private readonly ConsoleColor[,] _frontFg;
+        private readonly ConsoleColor[,] _backFg;
+        private readonly ConsoleColor[,] _frontBg;
+        private readonly ConsoleColor[,] _backBg;
 
-        public int Width { get; private set; }
-        public int Height { get; private set; }
-        public bool IsResized { get; private set; }
-        public ConsoleColor DefaultClearColor { get; set; } = ConsoleColor.Gray;
+        private int _lastConsoleWidth = -1;
+        private int _lastConsoleHeight = -1;
 
-        public void Initialize(int? requestedWidth = null, int? requestedHeight = null)
+        public int Width { get; }
+        public int Height { get; }
+
+        public ScreenManager(int width = 64, int height = 24)
         {
-            Console.CursorVisible = false;
+            Width = Math.Max(10, width);
+            Height = Math.Max(5, height);
 
-            if (requestedWidth.HasValue && requestedHeight.HasValue)
-            {
-                SetResolution(requestedWidth.Value, requestedHeight.Value);
-            }
-            else
-            {
-                RefreshResolution();
-            }
+            _frontChar = new char[Width, Height];
+            _backChar = new char[Width, Height];
+            _frontFg = new ConsoleColor[Width, Height];
+            _backFg = new ConsoleColor[Width, Height];
+            _frontBg = new ConsoleColor[Width, Height];
+            _backBg = new ConsoleColor[Width, Height];
 
-            AllocateBuffers(Width, Height);
-            Console.Clear();
-            _forceFullRedraw = true;
+            Clear(' ', ConsoleColor.Gray, ConsoleColor.Black);
+            MarkDirtyAll();
         }
 
-        public void SetResolution(int width, int height)
+        public void Clear(
+            char glyph = ' ',
+            ConsoleColor foreground = ConsoleColor.Gray,
+            ConsoleColor background = ConsoleColor.Black)
         {
-            int maxW = Math.Max(20, Console.LargestWindowWidth);
-            int maxH = Math.Max(10, Console.LargestWindowHeight);
-            int targetW = Math.Clamp(width, 20, maxW);
-            int targetH = Math.Clamp(height, 10, maxH);
-
-#pragma warning disable CA1416
-            if (OperatingSystem.IsWindows())
-            {
-                try
+            for (int y = 0; y < Height; y++)
+                for (int x = 0; x < Width; x++)
                 {
-                    Console.SetWindowSize(targetW, targetH);
-                    Console.SetBufferSize(targetW, targetH);
+                    _backChar[x, y] = glyph;
+                    _backFg[x, y] = foreground;
+                    _backBg[x, y] = background;
                 }
-                catch
-                {
-                }
-            }
-#pragma warning restore CA1416
-
-            RefreshResolution();
         }
 
-        public void RefreshResolution()
-        {
-            int currentW = Math.Max(1, Console.WindowWidth);
-            int currentH = Math.Max(1, Console.WindowHeight);
-
-            IsResized = (currentW != Width || currentH != Height);
-            if (IsResized)
-            {
-                Width = currentW;
-                Height = currentH;
-                AllocateBuffers(Width, Height);
-                Console.Clear();
-                _forceFullRedraw = true;
-            }
-        }
-
-        private void AllocateBuffers(int width, int height)
-        {
-            _backBuffer = new ScreenCell[width, height];
-            _frontBuffer = new ScreenCell[width, height];
-            var blank = new ScreenCell(' ', DefaultClearColor);
-
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    _backBuffer[x, y] = blank;
-                    _frontBuffer[x, y] = new ScreenCell('\0', DefaultClearColor);
-                }
-            }
-        }
-
-        public void ClearBackBuffer(char fillChar = ' ', ConsoleColor? color = null)
-        {
-            ConsoleColor targetColor = color ?? DefaultClearColor;
-            var blank = new ScreenCell(fillChar, targetColor);
-
-            for (int x = 0; x < Width; x++)
-            {
-                for (int y = 0; y < Height; y++)
-                {
-                    _backBuffer[x, y] = blank;
-                }
-            }
-        }
-
-        public void DrawAt(int x, int y, char symbol, ConsoleColor color = ConsoleColor.Gray)
+        public void DrawPixel(
+            int x,
+            int y,
+            char glyph,
+            ConsoleColor foreground = ConsoleColor.White,
+            ConsoleColor background = ConsoleColor.Black)
         {
             if (x < 0 || x >= Width || y < 0 || y >= Height)
                 return;
 
-            _backBuffer[x, y] = new ScreenCell(symbol, color);
+            _backChar[x, y] = glyph;
+            _backFg[x, y] = foreground;
+            _backBg[x, y] = background;
         }
 
-        public void DrawText(int x, int y, string text, ConsoleColor color = ConsoleColor.Gray)
+        public void DrawText(
+            int x,
+            int y,
+            string? text,
+            ConsoleColor foreground = ConsoleColor.White,
+            ConsoleColor background = ConsoleColor.Black)
         {
-            if (y < 0 || y >= Height || x >= Width || string.IsNullOrEmpty(text))
+            if (y < 0 || y >= Height || string.IsNullOrEmpty(text))
                 return;
 
             for (int i = 0; i < text.Length; i++)
             {
-                int targetX = x + i;
-                if (targetX < 0)
-                    continue;
-                if (targetX >= Width)
-                    break;
-
-                _backBuffer[targetX, y] = new ScreenCell(text[i], color);
+                int px = x + i;
+                if (px >= 0 && px < Width)
+                {
+                    _backChar[px, y] = text[i];
+                    _backFg[px, y] = foreground;
+                    _backBg[px, y] = background;
+                }
             }
         }
 
         public void Present()
         {
-            ConsoleColor? currentColor = null;
+            if (!TryGetSafeConsoleBounds(out int bufferWidth, out int bufferHeight, out int windowWidth, out int windowHeight))
+                return;
 
-            for (int y = 0; y < Height; y++)
+            if (bufferWidth <= 0 || bufferHeight <= 0 || windowWidth <= 0 || windowHeight <= 0)
+                return;
+
+            if (_lastConsoleWidth != bufferWidth || _lastConsoleHeight != bufferHeight)
             {
-                int x = 0;
-                while (x < Width)
-                {
-                    ScreenCell desired = _backBuffer[x, y];
-                    ScreenCell current = _frontBuffer[x, y];
-
-                    if (!_forceFullRedraw && desired.Equals(current))
-                    {
-                        x++;
-                        continue;
-                    }
-
-                    Console.SetCursorPosition(x, y);
-                    if (currentColor != desired.Color)
-                    {
-                        Console.ForegroundColor = desired.Color;
-                        currentColor = desired.Color;
-                    }
-
-                    while (x < Width)
-                    {
-                        ScreenCell cell = _backBuffer[x, y];
-                        if (!_forceFullRedraw && cell.Equals(_frontBuffer[x, y]))
-                            break;
-
-                        if (cell.Color != desired.Color)
-                            break;
-
-                        Console.Write(cell.Symbol);
-                        _frontBuffer[x, y] = cell;
-                        x++;
-                    }
-                }
+                _lastConsoleWidth = bufferWidth;
+                _lastConsoleHeight = bufferHeight;
+                MarkDirtyAll();
             }
 
-            Console.ResetColor();
-            _forceFullRedraw = false;
+            // 마지막 열/행 출력 시 발생할 수 있는 줄바꿈/스크롤을 피하기 위해 안전 한계 설정
+            int maxDrawableX = Math.Min(Width, Math.Min(bufferWidth, windowWidth)) - 1;
+            int maxDrawableY = Math.Min(Height, Math.Min(bufferHeight, windowHeight)) - 1;
+
+            if (maxDrawableX < 0 || maxDrawableY < 0)
+                return;
+
+            ConsoleColor currentFg = Console.ForegroundColor;
+            ConsoleColor currentBg = Console.BackgroundColor;
+
+            try
+            {
+                for (int y = 0; y <= maxDrawableY; y++)
+                    for (int x = 0; x <= maxDrawableX; x++)
+                    {
+                        char targetChar = _backChar[x, y];
+                        ConsoleColor targetFg = _backFg[x, y];
+                        ConsoleColor targetBg = _backBg[x, y];
+
+                        if (targetChar != _frontChar[x, y] ||
+                            targetFg != _frontFg[x, y] ||
+                            targetBg != _frontBg[x, y])
+                        {
+                            Console.SetCursorPosition(x, y);
+
+                            if (targetFg != currentFg)
+                            {
+                                Console.ForegroundColor = targetFg;
+                                currentFg = targetFg;
+                            }
+
+                            if (targetBg != currentBg)
+                            {
+                                Console.BackgroundColor = targetBg;
+                                currentBg = targetBg;
+                            }
+
+                            Console.Write(targetChar);
+
+                            _frontChar[x, y] = targetChar;
+                            _frontFg[x, y] = targetFg;
+                            _frontBg[x, y] = targetBg;
+                        }
+                    }
+            }
+            catch (IOException)
+            {
+                MarkDirtyAll();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MarkDirtyAll();
+            }
         }
 
-        public void Restore()
+        public void MarkDirtyAll()
         {
-            Console.CursorVisible = true;
-            Console.ResetColor();
-            Console.Clear();
+            for (int y = 0; y < Height; y++)
+                for (int x = 0; x < Width; x++)
+                {
+                    _frontChar[x, y] = '\0';
+                    _frontFg[x, y] = (ConsoleColor)(-1);
+                    _frontBg[x, y] = (ConsoleColor)(-1);
+                }
+        }
+
+        private static bool TryGetSafeConsoleBounds(
+            out int bufferWidth,
+            out int bufferHeight,
+            out int windowWidth,
+            out int windowHeight)
+        {
+            bufferWidth = 0;
+            bufferHeight = 0;
+            windowWidth = 0;
+            windowHeight = 0;
+
+            try
+            {
+                bufferWidth = Console.BufferWidth;
+                bufferHeight = Console.BufferHeight;
+                windowWidth = Console.WindowWidth;
+                windowHeight = Console.WindowHeight;
+                return true;
+            }
+            catch (IOException)
+            {
+                return false;
+            }
+            catch (PlatformNotSupportedException)
+            {
+                return false;
+            }
         }
     }
 }

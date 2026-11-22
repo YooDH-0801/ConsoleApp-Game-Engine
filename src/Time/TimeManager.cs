@@ -2,73 +2,51 @@
 
 namespace ConsoleGameEngine
 {
-    internal sealed class TimeManager
+    public sealed class TimeManager
     {
-        private readonly Stopwatch _stopwatch = new Stopwatch();
-        private double _previousTime;
+        private readonly Stopwatch _stopwatch = new();
+        private double _lastFrameSeconds;
+        private float _timeScale = 1.0f;
 
-        public double FixedDeltaTime { get; }
-        public double MaxDeltaTime { get; }
-        public double DeltaTime { get; private set; }
-        public double UnscaledDeltaTime { get; private set; }
-        public double TimeScale { get; set; } = 1.0;
-        public double TimeSinceLevelLoad { get; private set; }
-        public double Accumulator { get; private set; }
-        public int FrameCount { get; private set; }
+        public double MaxDeltaTime { get; set; } = 0.1;
 
-        public TimeManager(double targetFps = 60.0, double maxDeltaTime = 0.25)
+        public float DeltaTime { get; private set; }
+        public float UnscaledDeltaTime { get; private set; }
+        public float ElapsedTime { get; private set; }
+        public float UnscaledElapsedTime { get; private set; }
+        public long FrameCount { get; private set; }
+
+        public float TimeScale
         {
-            FixedDeltaTime = 1.0 / targetFps;
-            MaxDeltaTime = maxDeltaTime;
+            get => _timeScale;
+            set => _timeScale = Math.Max(0f, value);
         }
 
-        public void Reset()
+        public void Start()
         {
             _stopwatch.Restart();
-            _previousTime = 0.0;
-            DeltaTime = 0.0;
-            UnscaledDeltaTime = 0.0;
-            TimeSinceLevelLoad = 0.0;
-            Accumulator = 0.0;
+            _lastFrameSeconds = _stopwatch.Elapsed.TotalSeconds;
+            DeltaTime = 0f;
+            UnscaledDeltaTime = 0f;
+            ElapsedTime = 0f;
+            UnscaledElapsedTime = 0f;
             FrameCount = 0;
         }
 
         public void Tick()
         {
-            double currentTime = _stopwatch.Elapsed.TotalSeconds;
-            double rawDelta = currentTime - _previousTime;
-            _previousTime = currentTime;
+            double now = _stopwatch.Elapsed.TotalSeconds;
+            double rawDelta = Math.Max(0.0, now - _lastFrameSeconds);
+            _lastFrameSeconds = now;
 
-            if (rawDelta > MaxDeltaTime)
-            {
-                rawDelta = MaxDeltaTime;
-            }
+            double clampedDelta = Math.Min(rawDelta, MaxDeltaTime);
 
-            UnscaledDeltaTime = rawDelta;
-            DeltaTime = rawDelta * TimeScale;
-            TimeSinceLevelLoad += DeltaTime;
-            Accumulator += DeltaTime;
+            UnscaledDeltaTime = (float)clampedDelta;
+            DeltaTime = (float)(clampedDelta * _timeScale);
+
+            UnscaledElapsedTime += UnscaledDeltaTime;
+            ElapsedTime += DeltaTime;
             FrameCount++;
-        }
-
-        public bool ConsumeFixedStep()
-        {
-            if (Accumulator >= FixedDeltaTime)
-            {
-                Accumulator -= FixedDeltaTime;
-                return true;
-            }
-            return false;
-        }
-
-        public void SleepToMaintainFrameRate()
-        {
-            double elapsedInFrame = _stopwatch.Elapsed.TotalSeconds - _previousTime;
-            double remaining = FixedDeltaTime - elapsedInFrame;
-            if (remaining > 0.002)
-            {
-                Thread.Sleep((int)((remaining - 0.001) * 1000));
-            }
         }
     }
 }

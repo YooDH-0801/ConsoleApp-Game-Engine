@@ -1,68 +1,66 @@
-﻿namespace ConsoleGameEngine.Core
+﻿using ConsoleApp_Game_Engine;
+using System.Diagnostics;
+using System.Text;
+
+namespace ConsoleGameEngine.Core
 {
     public sealed class GameLoop
     {
-        private readonly TimeManager _timeManager = new TimeManager(targetFps: 60.0);
-        private readonly InputManager _inputManager = new InputManager();
-        private readonly ScreenManager _screenManager = new ScreenManager();
+        private readonly ApplicationManager _app;
+        private readonly TimeManager _time;
+        private readonly InputManager _input;
+        private readonly ScreenManager _screen;
 
-        public bool IsApplicationPlaying { get; set; }
+        public GameLoop(
+        ApplicationManager app,
+        TimeManager time,
+        InputManager input,
+        ScreenManager screen)
+        {
+            _app = app ?? throw new ArgumentNullException(nameof(app));
+            _time = time ?? throw new ArgumentNullException(nameof(time));
+            _input = input ?? throw new ArgumentNullException(nameof(input));
+            _screen = screen ?? throw new ArgumentNullException(nameof(screen));
+        }
 
         public void Run()
         {
-            Time.Bind(_timeManager);
-            Input.Bind(_inputManager);
-            Screen.Bind(_screenManager);
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.CursorVisible = false;
 
-            _screenManager.Initialize(requestedWidth: 80, requestedHeight: 25);
-            _timeManager.Reset();
-            IsApplicationPlaying = true;
-
+            var stopwatch = Stopwatch.StartNew();
 
             try
             {
-                while (IsApplicationPlaying)
+                Console.Clear();
+                _screen.MarkDirtyAll();
+                _app.IsPlaying = true;
+                _time.Start();
+
+                SceneManager.ApplyPendingLoad();
+
+                while (_app.IsPlaying)
                 {
-                    _timeManager.Tick();
-                    _screenManager.RefreshResolution();
-                    _inputManager.Poll();
+                    double frameStart = stopwatch.Elapsed.TotalSeconds;
 
-                    // TODO::생명주기 Awake() 호출 위치.
+                    _time.Tick();
+                    _input.Poll();
 
-                    // TODO::생명주기 Start() 호출 위치.
+                    SceneManager.Update();
+                    SceneManager.Render();
 
-                    while (_timeManager.ConsumeFixedStep())
-                    {
-                        // TODO::생명주기 FixedUpdate() 호출 위치.
-                    }
+                    _app.WaitForNextFrame(stopwatch, frameStart);
 
-                    _screenManager.ClearBackBuffer(' ');
-
-                    // TODO::생명주기 Update() 호출 위치.
-
-                    // TODO::생명주기 LateUpdate() 호출 위치.
-
-                    _screenManager.Present();
-                    _timeManager.SleepToMaintainFrameRate();
+                    SceneManager.ApplyPendingLoad();
                 }
             }
             finally
             {
-                OnApplicationQuit();
+                SceneManager.Clear();
+                _input.Clear();
+                Console.ResetColor();
+                Console.CursorVisible = true;
             }
-        }
-
-        private void OnApplicationQuit()
-        {
-            Time.Unbind(_timeManager);
-            Input.Unbind(_inputManager);
-            Screen.Unbind(_screenManager);
-
-            _screenManager.Restore();
-            Console.WriteLine("애플리케이션이 종료되었습니다.");
         }
     }
 }
-
-
-//TODO:: 전체적으로 흐름 파악 후, 리펙토링할 것.

@@ -1,44 +1,32 @@
 ﻿namespace ConsoleGameEngine
 {
-    public sealed class Scene
+    public abstract class Scene
     {
-        private readonly List<GameObject> _gameObjectList = new List<GameObject>();
-
         public string Name { get; }
-        public IReadOnlyList<GameObject> GameObjectList => _gameObjectList;
 
-        internal Scene(string name)
+        protected Scene(string name)
         {
-            Name = name;
+            Name = string.IsNullOrWhiteSpace(name) ? GetType().Name : name;
         }
 
-        internal GameObject AddGameObject(string name = "GameObject")
-        {
-            var go = new GameObject(name);
-            _gameObjectList.Add(go);
-            return go;
-        }
+        /// <summary>
+        /// 씬이 활성화되어 화면에 진입할 때 한 번 호출됩니다.
+        /// </summary>
+        public virtual void OnEnter() { }
 
-        internal void MoveGameObjectTo(GameObject go, Scene targetScene)
-        {
-            if (ReferenceEquals(this, targetScene))
-                return;
+        /// <summary>
+        /// 다른 씬으로 전환되기 직전에 한 번 호출됩니다.
+        /// </summary>
+        public virtual void OnExit() { }
 
-            if (_gameObjectList.Remove(go))
-            {
-                targetScene._gameObjectList.Add(go);
-            }
-        }
+        /// <summary>
+        /// 매 프레임 게임 로직과 입력 처리를 수행합니다.
+        /// </summary>
+        public virtual void Update() { }
 
-        internal void UnloadAndDestroy()
-        {
-            //TODO:: 추가할 것.
-            /*for (int i = _gameObjectList.Count - 1; i >= 0; i--)
-            {
-                _gameObjectList[i].DestroyAllComponents();
-            }*/
-
-            _gameObjectList.Clear();
-        }
+        /// <summary>
+        /// 매 프레임 백버퍼에 그리고 Screen.Present()로 출력합니다.
+        /// </summary>
+        public virtual void Render() { }
     }
 }

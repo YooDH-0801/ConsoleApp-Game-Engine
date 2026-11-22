@@ -4,27 +4,32 @@
     {
         private static TimeManager? _current;
 
-        internal static void Bind(TimeManager manager) => _current = manager;
-        internal static void Unbind(TimeManager manager)
-        {
-            if (ReferenceEquals(_current, manager))
-                _current = null;
-        }
-
         private static TimeManager Current =>
-            _current ?? throw new InvalidOperationException("Time이 아직 GameLoop에 바인딩되지 않았습니다.");
+            _current ?? throw new InvalidOperationException("TimeManager가 바인딩되지 않았습니다.");
 
-        public static double FixedDeltaTime => Current.FixedDeltaTime;
-        public static double MaxDeltaTime => Current.MaxDeltaTime;
-        public static double DeltaTime => Current.DeltaTime;
-        public static double UnscaledDeltaTime => Current.UnscaledDeltaTime;
-        public static double TimeSinceLevelLoad => Current.TimeSinceLevelLoad;
-        public static int FrameCount => Current.FrameCount;
+        public static bool IsBound => _current != null;
 
-        public static double TimeScale
+        public static void Bind(TimeManager manager) =>
+            _current = manager ?? throw new ArgumentNullException(nameof(manager));
+
+        public static void Unbind() => _current = null;
+
+        public static float DeltaTime => Current.DeltaTime;
+        public static float UnscaledDeltaTime => Current.UnscaledDeltaTime;
+        public static float ElapsedTime => Current.ElapsedTime;
+        public static float UnscaledElapsedTime => Current.UnscaledElapsedTime;
+        public static long FrameCount => Current.FrameCount;
+
+        public static float TimeScale
         {
             get => Current.TimeScale;
             set => Current.TimeScale = value;
+        }
+
+        public static double MaxDeltaTime
+        {
+            get => Current.MaxDeltaTime;
+            set => Current.MaxDeltaTime = value;
         }
     }
 }

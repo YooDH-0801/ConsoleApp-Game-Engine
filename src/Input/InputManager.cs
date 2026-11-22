@@ -2,74 +2,121 @@
 {
     public sealed class InputManager
     {
-        private readonly HashSet<ConsoleKey> _pressedThisFrame = new HashSet<ConsoleKey>();
-        private readonly HashSet<ConsoleKey> _heldKeys = new HashSet<ConsoleKey>();
-        private readonly Dictionary<ConsoleKey, int> _keyHoldFrames = new Dictionary<ConsoleKey, int>();
+        private readonly HashSet<ConsoleKey> _previousHeld = new();
+        private readonly HashSet<ConsoleKey> _currentHeld = new();
+        private readonly HashSet<ConsoleKey> _downThisFrame = new();
+        private readonly HashSet<ConsoleKey> _upThisFrame = new();
+        private readonly Dictionary<ConsoleKey, float> _holdTimers = new();
+        private readonly List<ConsoleKey> _expiredBuffer = new();
+        private readonly List<ConsoleKeyInfo> _frameKeyInfos = new();
 
-        private const int DefaultHoldFrames = 2;
+        /// <summary>
+        /// 키 입력 이벤트 후 "눌림 유지"로 간주할 유예 시간(초).
+        /// </summary>
+        public float HoldGraceDuration { get; set; } = 0.12f;
+
+        /// <summary>
+        /// 이번 프레임에 읽어들인 원본 콘솔 키 정보 목록입니다.
+        /// </summary>
+        public IReadOnlyList<ConsoleKeyInfo> FrameKeyInfos => _frameKeyInfos;
 
         public void Poll()
         {
-            _pressedThisFrame.Clear();
-
-            var keysToRemove = new List<ConsoleKey>();
-            foreach (var pair in _keyHoldFrames)
+            _previousHeld.Clear();
+            foreach (ConsoleKey key in _currentHeld)
             {
-                int nextFrames = pair.Value - 1;
-                if (nextFrames <= 0)
+                _previousHeld.Add(key);
+            }
+
+            _currentHeld.Clear();
+            _downThisFrame.Clear();
+            _upThisFrame.Clear();
+            _frameKeyInfos.Clear();
+
+            UpdateHoldTimers(Time.UnscaledDeltaTime);
+            ReadConsoleInputBuffer();
+            ComputeKeyUpStates();
+        }
+
+        public bool GetKeyDown(ConsoleKey key) => _downThisFrame.Contains(key);
+
+        public bool GetKey(ConsoleKey key) => _currentHeld.Contains(key);
+
+        public bool GetKeyUp(ConsoleKey key) => _upThisFrame.Contains(key);
+
+        public void Clear()
+        {
+            _previousHeld.Clear();
+            _currentHeld.Clear();
+            _downThisFrame.Clear();
+            _upThisFrame.Clear();
+            _holdTimers.Clear();
+            _expiredBuffer.Clear();
+            _frameKeyInfos.Clear();
+        }
+
+        private void UpdateHoldTimers(float deltaSeconds)
+        {
+            if (_holdTimers.Count == 0)
+                return;
+
+            _expiredBuffer.Clear();
+            float step = Math.Max(0f, deltaSeconds);
+
+            foreach (KeyValuePair<ConsoleKey, float> pair in _holdTimers)
+            {
+                float remaining = pair.Value - step;
+                if (remaining <= 0f)
                 {
-                    keysToRemove.Add(pair.Key);
+                    _expiredBuffer.Add(pair.Key);
                 }
                 else
                 {
-                    _keyHoldFrames[pair.Key] = nextFrames;
+                    _holdTimers[pair.Key] = remaining;
+                    _currentHeld.Add(pair.Key);
                 }
             }
 
-            foreach (ConsoleKey key in keysToRemove)
+            for (int i = 0; i < _expiredBuffer.Count; i++)
             {
-                _keyHoldFrames.Remove(key);
-                _heldKeys.Remove(key);
-            }
-
-            while (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
-                ConsoleKey key = keyInfo.Key;
-
-                if (!_heldKeys.Contains(key))
-                {
-                    _pressedThisFrame.Add(key);
-                }
-
-                _heldKeys.Add(key);
-                _keyHoldFrames[key] = DefaultHoldFrames;
+                _holdTimers.Remove(_expiredBuffer[i]);
             }
         }
 
-        public bool GetKeyDown(ConsoleKey key) => _pressedThisFrame.Contains(key);
-
-        public bool GetKey(ConsoleKey key) => _heldKeys.Contains(key);
-
-        public int GetAxisRaw(string axisName)
+        private void ReadConsoleInputBuffer()
         {
-            if (string.Equals(axisName, "Horizontal", StringComparison.OrdinalIgnoreCase))
+            try
             {
-                int value = 0;
-                if (GetKey(ConsoleKey.LeftArrow) || GetKey(ConsoleKey.A)) value -= 1;
-                if (GetKey(ConsoleKey.RightArrow) || GetKey(ConsoleKey.D)) value += 1;
-                return value;
-            }
+                while (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo info = Console.ReadKey(intercept: true);
+                    ConsoleKey key = info.Key;
 
-            if (string.Equals(axisName, "Vertical", StringComparison.OrdinalIgnoreCase))
+                    _frameKeyInfos.Add(info);
+                    _holdTimers[key] = HoldGraceDuration;
+                    _currentHeld.Add(key);
+
+                    if (!_previousHeld.Contains(key))
+                    {
+                        _downThisFrame.Add(key);
+                    }
+                }
+            }
+            catch (InvalidOperationException)
             {
-                int value = 0;
-                if (GetKey(ConsoleKey.UpArrow) || GetKey(ConsoleKey.W)) value -= 1;
-                if (GetKey(ConsoleKey.DownArrow) || GetKey(ConsoleKey.S)) value += 1;
-                return value;
+                // 입력 스트림 리다이렉트 또는 콘솔 핸들 부재 환경 방어
             }
+        }
 
-            return 0;
+        private void ComputeKeyUpStates()
+        {
+            foreach (ConsoleKey key in _previousHeld)
+            {
+                if (!_currentHeld.Contains(key))
+                {
+                    _upThisFrame.Add(key);
+                }
+            }
         }
     }
 }
