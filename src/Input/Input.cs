@@ -11,12 +11,6 @@
 
         public static IReadOnlyList<ConsoleKeyInfo> FrameKeyInfos => Current.FrameKeyInfos;
 
-        public static float HoldGraceDuration
-        {
-            get => Current.HoldGraceDuration;
-            set => Current.HoldGraceDuration = value;
-        }
-
         public static void Bind(InputManager manager)
         {
             _current = manager ?? throw new ArgumentNullException(nameof(manager));

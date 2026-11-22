@@ -1,23 +1,34 @@
-﻿namespace ConsoleApp_Game_Engine
+﻿using System.Runtime.InteropServices;
+
+namespace ConsoleApp_Game_Engine
 {
     public sealed class InputManager
     {
+        [DllImport("user32.dll")]
+        private static extern short GetAsyncKeyState(int vKey);
+
         private readonly HashSet<ConsoleKey> _previousHeld = new();
         private readonly HashSet<ConsoleKey> _currentHeld = new();
         private readonly HashSet<ConsoleKey> _downThisFrame = new();
         private readonly HashSet<ConsoleKey> _upThisFrame = new();
-        private readonly Dictionary<ConsoleKey, float> _holdTimers = new();
-        private readonly List<ConsoleKey> _expiredBuffer = new();
         private readonly List<ConsoleKeyInfo> _frameKeyInfos = new();
 
-        /// <summary>
-        /// 키 입력 이벤트 후 "눌림 유지"로 간주할 유예 시간(초).
-        /// </summary>
-        public float HoldGraceDuration { get; set; } = 0.12f;
+        // 감시할 키 목록 (필요한 키를 추가)
+        private static readonly ConsoleKey[] _watchedKeys =
+        {
+        ConsoleKey.LeftArrow,
+        ConsoleKey.RightArrow,
+        ConsoleKey.UpArrow,
+        ConsoleKey.DownArrow,
+        ConsoleKey.W,
+        ConsoleKey.A,
+        ConsoleKey.S,
+        ConsoleKey.D,
+        ConsoleKey.Spacebar,
+        ConsoleKey.Enter,
+        ConsoleKey.Escape
+    };
 
-        /// <summary>
-        /// 이번 프레임에 읽어들인 원본 콘솔 키 정보 목록입니다.
-        /// </summary>
         public IReadOnlyList<ConsoleKeyInfo> FrameKeyInfos => _frameKeyInfos;
 
         public void Poll()
@@ -33,15 +44,17 @@
             _upThisFrame.Clear();
             _frameKeyInfos.Clear();
 
-            UpdateHoldTimers(Time.UnscaledDeltaTime);
-            ReadConsoleInputBuffer();
-            ComputeKeyUpStates();
+            // 콘솔 버퍼에 쌓인 키 문자/정보는 비워서 콘솔 화면에 출력되지 않게 유지
+            DrainConsoleBuffer();
+
+            if (OperatingSystem.IsWindows())
+            {
+                PollWindowsAsyncKeys();
+            }
         }
 
         public bool GetKeyDown(ConsoleKey key) => _downThisFrame.Contains(key);
-
         public bool GetKey(ConsoleKey key) => _currentHeld.Contains(key);
-
         public bool GetKeyUp(ConsoleKey key) => _upThisFrame.Contains(key);
 
         public void Clear()
@@ -50,73 +63,57 @@
             _currentHeld.Clear();
             _downThisFrame.Clear();
             _upThisFrame.Clear();
-            _holdTimers.Clear();
-            _expiredBuffer.Clear();
             _frameKeyInfos.Clear();
         }
 
-        private void UpdateHoldTimers(float deltaSeconds)
+        private void PollWindowsAsyncKeys()
         {
-            if (_holdTimers.Count == 0)
-                return;
-
-            _expiredBuffer.Clear();
-            float step = Math.Max(0f, deltaSeconds);
-
-            foreach (KeyValuePair<ConsoleKey, float> pair in _holdTimers)
+            foreach (ConsoleKey key in _watchedKeys)
             {
-                float remaining = pair.Value - step;
-                if (remaining <= 0f)
-                {
-                    _expiredBuffer.Add(pair.Key);
-                }
-                else
-                {
-                    _holdTimers[pair.Key] = remaining;
-                    _currentHeld.Add(pair.Key);
-                }
-            }
+                int vk = ToVirtualKey(key);
+                if (vk == 0) continue;
 
-            for (int i = 0; i < _expiredBuffer.Count; i++)
-            {
-                _holdTimers.Remove(_expiredBuffer[i]);
-            }
-        }
-
-        private void ReadConsoleInputBuffer()
-        {
-            try
-            {
-                while (Console.KeyAvailable)
+                bool isDownNow = (GetAsyncKeyState(vk) & 0x8000) != 0;
+                if (isDownNow)
                 {
-                    ConsoleKeyInfo info = Console.ReadKey(intercept: true);
-                    ConsoleKey key = info.Key;
-
-                    _frameKeyInfos.Add(info);
-                    _holdTimers[key] = HoldGraceDuration;
                     _currentHeld.Add(key);
-
                     if (!_previousHeld.Contains(key))
                     {
                         _downThisFrame.Add(key);
                     }
                 }
-            }
-            catch (InvalidOperationException)
-            {
-                // 입력 스트림 리다이렉트 또는 콘솔 핸들 부재 환경 방어
-            }
-        }
-
-        private void ComputeKeyUpStates()
-        {
-            foreach (ConsoleKey key in _previousHeld)
-            {
-                if (!_currentHeld.Contains(key))
+                else if (_previousHeld.Contains(key))
                 {
                     _upThisFrame.Add(key);
                 }
             }
         }
+
+        private void DrainConsoleBuffer()
+        {
+            try
+            {
+                while (Console.KeyAvailable)
+                {
+                    _frameKeyInfos.Add(Console.ReadKey(intercept: true));
+                }
+            }
+            catch (InvalidOperationException)
+            {
+            }
+        }
+
+        private static int ToVirtualKey(ConsoleKey key) => key switch
+        {
+            ConsoleKey.LeftArrow => 0x25,
+            ConsoleKey.UpArrow => 0x26,
+            ConsoleKey.RightArrow => 0x27,
+            ConsoleKey.DownArrow => 0x28,
+            ConsoleKey.Spacebar => 0x20,
+            ConsoleKey.Enter => 0x0D,
+            ConsoleKey.Escape => 0x1B,
+            >= ConsoleKey.A and <= ConsoleKey.Z => (int)key,
+            _ => 0
+        };
     }
 }
