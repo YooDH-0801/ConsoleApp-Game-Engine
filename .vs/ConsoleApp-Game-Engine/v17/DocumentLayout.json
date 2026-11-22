@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "C:\\My Repositories\\ConsoleApp-Game-Engine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\core\\gameloop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\core\\gameloop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\application\\applicationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\application\\applicationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\engine\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\engine\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\scene\\playscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\scene\\playscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\scene\\titlescene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\scene\\titlescene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\time\\timemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\time\\timemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\time\\time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\time\\time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\structs\\screencell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\structs\\screencell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\screen\\screenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\screen\\screenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\screen\\screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\screen\\screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\scene\\scenemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,18 +51,6 @@
       "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\scene\\scene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\screen\\screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\screen\\screen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\screen\\screenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\screen\\screenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\time\\timemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\time\\timemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\input\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\input\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,16 +59,28 @@
       "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\input\\input.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\time\\time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\time\\time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\engine\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\engine\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\engine\\monobehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\engine\\monobehaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\engine\\object.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\engine\\object.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\engine\\behaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\engine\\behaviour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\core\\gameloop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\core\\gameloop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\application\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\application\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|c:\\my repositories\\consoleapp-game-engine\\src\\application\\applicationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}|src\\ConsoleApp-Game-Engine.csproj|solutionrelative:src\\application\\applicationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,17 +90,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GameEngine.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\GameEngine.cs",
               "RelativeDocumentMoniker": "src\\GameEngine.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\GameEngine.cs",
               "RelativeToolTip": "src\\GameEngine.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:59:59.069Z",
               "IsPinned": true,
@@ -76,13 +108,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 18,
               "Title": "GameLoop.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Core\\GameLoop.cs",
               "RelativeDocumentMoniker": "src\\Core\\GameLoop.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Core\\GameLoop.cs",
               "RelativeToolTip": "src\\Core\\GameLoop.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAADoAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:54:35.7Z",
               "IsPinned": true,
@@ -90,133 +122,247 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 19,
               "Title": "Application.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Application\\Application.cs",
               "RelativeDocumentMoniker": "src\\Application\\Application.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Application\\Application.cs",
               "RelativeToolTip": "src\\Application\\Application.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:56:55.678Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "ApplicationManager.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Application\\ApplicationManager.cs",
               "RelativeDocumentMoniker": "src\\Application\\ApplicationManager.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Application\\ApplicationManager.cs",
               "RelativeToolTip": "src\\Application\\ApplicationManager.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:51:03.729Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
               "Title": "Time.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Time\\Time.cs",
               "RelativeDocumentMoniker": "src\\Time\\Time.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Time\\Time.cs",
               "RelativeToolTip": "src\\Time\\Time.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:57:43.227Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "TimeManager.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Time\\TimeManager.cs",
               "RelativeDocumentMoniker": "src\\Time\\TimeManager.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Time\\TimeManager.cs",
               "RelativeToolTip": "src\\Time\\TimeManager.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAADIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:54:02.157Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "Screen.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Screen\\Screen.cs",
               "RelativeDocumentMoniker": "src\\Screen\\Screen.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Screen\\Screen.cs",
               "RelativeToolTip": "src\\Screen\\Screen.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:59:25.032Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "ScreenManager.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Screen\\ScreenManager.cs",
               "RelativeDocumentMoniker": "src\\Screen\\ScreenManager.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Screen\\ScreenManager.cs",
               "RelativeToolTip": "src\\Screen\\ScreenManager.cs",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAwwMMAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:56:27.805Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "Input.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Input\\Input.cs",
               "RelativeDocumentMoniker": "src\\Input\\Input.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Input\\Input.cs",
               "RelativeToolTip": "src\\Input\\Input.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:57:59.727Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "InputManager.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Input\\InputManager.cs",
               "RelativeDocumentMoniker": "src\\Input\\InputManager.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Input\\InputManager.cs",
               "RelativeToolTip": "src\\Input\\InputManager.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAAABMAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T08:55:55.162Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "Scene.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Scene\\Scene.cs",
               "RelativeDocumentMoniker": "src\\Scene\\Scene.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Scene\\Scene.cs",
               "RelativeToolTip": "src\\Scene\\Scene.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T09:22:50.404Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "SceneManager.cs",
               "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Scene\\SceneManager.cs",
               "RelativeDocumentMoniker": "src\\Scene\\SceneManager.cs",
               "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Scene\\SceneManager.cs",
               "RelativeToolTip": "src\\Scene\\SceneManager.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAEkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-22T09:45:07.35Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayScene.cs",
+              "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Scene\\PlayScene.cs",
+              "RelativeDocumentMoniker": "src\\Scene\\PlayScene.cs",
+              "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Scene\\PlayScene.cs",
+              "RelativeToolTip": "src\\Scene\\PlayScene.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T13:14:06.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ScreenCell.cs",
+              "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Structs\\ScreenCell.cs",
+              "RelativeDocumentMoniker": "src\\Structs\\ScreenCell.cs",
+              "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Structs\\ScreenCell.cs",
+              "RelativeToolTip": "src\\Structs\\ScreenCell.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T13:13:14.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Object.cs",
+              "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\Object.cs",
+              "RelativeDocumentMoniker": "src\\Engine\\Object.cs",
+              "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\Object.cs",
+              "RelativeToolTip": "src\\Engine\\Object.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T13:12:35.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MonoBehaviour.cs",
+              "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\MonoBehaviour.cs",
+              "RelativeDocumentMoniker": "src\\Engine\\MonoBehaviour.cs",
+              "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\MonoBehaviour.cs",
+              "RelativeToolTip": "src\\Engine\\MonoBehaviour.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T13:12:32.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameObject.cs",
+              "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\GameObject.cs",
+              "RelativeDocumentMoniker": "src\\Engine\\GameObject.cs",
+              "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\GameObject.cs",
+              "RelativeToolTip": "src\\Engine\\GameObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T13:12:27.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Component.cs",
+              "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\Component.cs",
+              "RelativeDocumentMoniker": "src\\Engine\\Component.cs",
+              "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\Component.cs",
+              "RelativeToolTip": "src\\Engine\\Component.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T13:12:21.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Behaviour.cs",
+              "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\Behaviour.cs",
+              "RelativeDocumentMoniker": "src\\Engine\\Behaviour.cs",
+              "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Engine\\Behaviour.cs",
+              "RelativeToolTip": "src\\Engine\\Behaviour.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T13:12:07.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TitleScene.cs",
+              "DocumentMoniker": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Scene\\TitleScene.cs",
+              "RelativeDocumentMoniker": "src\\Scene\\TitleScene.cs",
+              "ToolTip": "C:\\My Repositories\\ConsoleApp-Game-Engine\\src\\Scene\\TitleScene.cs",
+              "RelativeToolTip": "src\\Scene\\TitleScene.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-22T13:10:58.604Z",
+              "EditorCaption": ""
             }
           ]
         }

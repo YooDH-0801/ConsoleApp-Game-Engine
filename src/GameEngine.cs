@@ -1,7 +1,6 @@
-﻿using ConsoleApp_Game_Engine;
-using ConsoleGameEngine.Core;
+﻿using ConsoleApp_Game_Engine.Core;
 
-namespace ConsoleGameEngine
+namespace ConsoleApp_Game_Engine
 {
     public class GameEngine
     {
@@ -21,9 +20,9 @@ namespace ConsoleGameEngine
             {
                 // TODO:: 이거 하고 오브젝트 계열 구현
                 // 예시:
-                // SceneManager.Register(new TitleScene());
-                // SceneManager.Register(new PlayScene());
-                // SceneManager.LoadScene("Title");
+                SceneManager.Register(new TitleScene());
+                SceneManager.Register(new PlayScene());
+                SceneManager.LoadScene("Title");
 
                 var loop = new GameLoop(appManager, timeManager, inputManager, screenManager);
                 loop.Run();

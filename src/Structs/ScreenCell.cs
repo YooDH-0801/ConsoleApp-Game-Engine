@@ -1,4 +1,4 @@
-﻿namespace ConsoleGameEngine.Structs
+﻿namespace ConsoleApp_Game_Engine.Structs
 {
     public readonly struct ScreenCell : IEquatable<ScreenCell>
     {

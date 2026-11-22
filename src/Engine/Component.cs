@@ -1,6 +1,6 @@
-﻿using ConsoleGameEngine.Core;
+﻿using ConsoleApp_Game_Engine.Core;
 
-namespace ConsoleGameEngine
+namespace ConsoleApp_Game_Engine
 {
     public abstract class Component : Object
     {

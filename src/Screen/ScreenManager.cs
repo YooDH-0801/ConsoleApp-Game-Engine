@@ -1,6 +1,6 @@
-﻿using ConsoleGameEngine.Structs;
+﻿using ConsoleApp_Game_Engine.Structs;
 
-namespace ConsoleGameEngine
+namespace ConsoleApp_Game_Engine
 {
     public sealed class ScreenManager
     {

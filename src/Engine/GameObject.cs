@@ -1,6 +1,4 @@
-﻿using ConsoleGameEngine.Core;
-
-namespace ConsoleGameEngine
+﻿namespace ConsoleApp_Game_Engine
 {
     public sealed class GameObject : Object
     {

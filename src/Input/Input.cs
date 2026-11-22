@@ -1,4 +1,4 @@
-﻿namespace ConsoleGameEngine
+﻿namespace ConsoleApp_Game_Engine
 {
     public static class Input
     {
