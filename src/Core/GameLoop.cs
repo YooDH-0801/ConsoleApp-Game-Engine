@@ -24,7 +24,11 @@ namespace ConsoleApp_Game_Engine.Core
 
         public void Run()
         {
+            // 1. 한글 및 특수문자 깨짐 방지 (UTF-8 설정)
             Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
+
+            // 2. 커서 숨기기 (게임 화면에 깜빡이는 커서 제거)
             Console.CursorVisible = false;
 
             var stopwatch = Stopwatch.StartNew();

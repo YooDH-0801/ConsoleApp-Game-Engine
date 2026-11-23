@@ -9,7 +9,7 @@ namespace ConsoleApp_Game_Engine
             var appManager = new ApplicationManager { TargetFrameRate = 30 };
             var timeManager = new TimeManager();
             var inputManager = new InputManager();
-            var screenManager = new ScreenManager(width: 64, height: 24);
+            var screenManager = new ScreenManager(width: 128, height: 48);
 
             Application.Bind(appManager);
             Time.Bind(timeManager);

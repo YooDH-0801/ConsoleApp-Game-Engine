@@ -29,6 +29,16 @@ namespace ConsoleApp_Game_Engine
             _frontBg = new ConsoleColor[Width, Height];
             _backBg = new ConsoleColor[Width, Height];
 
+            // 3. 콘솔 창 및 버퍼 크기 설정 (Windows 전용)
+            if (OperatingSystem.IsWindows())
+            {
+                // 현재 창 크기가 목표(128x48)보다 크면 버퍼 축소 시 예외가 발생하므로,
+                // 창 크기를 먼저 작게 줄인 뒤 버퍼 -> 창 순서로 설정하는 것이 가장 안전합니다.
+                Console.SetWindowSize(1, 1);
+                Console.SetBufferSize(Width, Height);
+                Console.SetWindowSize(Width, Height);
+            }
+
             Clear(' ', ConsoleColor.Gray, ConsoleColor.Black);
             MarkDirtyAll();
         }
