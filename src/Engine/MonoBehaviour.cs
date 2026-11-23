@@ -2,13 +2,31 @@
 {
     public abstract class MonoBehaviour : Behaviour
     {
-        protected MonoBehaviour(string name = "MonoBehaviour") : base(name) { }
+        internal bool HasAwoken { get; set; }
+    internal bool HasStarted { get; set; }
 
-        public virtual void Awake() { }
-        public virtual void Start() { }
-        public virtual void Update() { }
-        public virtual void FixedUpdate() { }
-        public virtual void LateUpdate() { }
-        public virtual void OnDestroy() { }
+    protected virtual void Awake() { }
+    protected virtual void Start() { }
+
+    internal override void InternalAwake()
+    {
+        if (HasAwoken || IsDestroyed)
+            return;
+
+        HasAwoken = true;
+        Awake();
+
+        if (IsActiveAndEnabled)
+            OnEnable();
+    }
+
+    internal override void InternalStart()
+    {
+        if (!HasAwoken || HasStarted || IsDestroyed || !IsActiveAndEnabled)
+            return;
+
+        HasStarted = true;
+        Start();
+    }
     }
 }

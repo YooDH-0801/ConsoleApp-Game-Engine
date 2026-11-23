@@ -2,16 +2,35 @@
 {
     public abstract class Object
     {
-        private static int _nextInstanceId = 1;
-
-        public int InstanceId { get; } = _nextInstanceId++;
         public string Name { get; set; }
+        public bool IsDestroyed { get; internal set; }
 
-        protected Object(string name = "Object")
+        protected Object(string name)
         {
-            Name = name;
+            Name = string.IsNullOrWhiteSpace(name) ? GetType().Name : name;
         }
 
-        public override string ToString() => $"{Name} ({GetType().Name})";
+        public static void Destroy(Object? obj)
+        {
+            if (obj == null || obj.IsDestroyed)
+                return;
+
+            if (obj is GameObject go)
+            {
+                go.MarkDestroyed();
+            }
+            else if (obj is Component comp)
+            {
+                comp.MarkDestroyed();
+            }
+            else
+            {
+                obj.IsDestroyed = true;
+            }
+        }
+
+        public override string ToString() => Name;
+
+        internal virtual void MarkDestroyed() { }
     }
 }

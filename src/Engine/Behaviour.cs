@@ -12,25 +12,62 @@
                 if (_enabled == value)
                     return;
 
-                bool wasActiveAndEnabled = IsActiveAndEnabled;
                 _enabled = value;
-                bool nowActiveAndEnabled = IsActiveAndEnabled;
-
-                if (!wasActiveAndEnabled && nowActiveAndEnabled)
-                    OnEnable();
-                else if (wasActiveAndEnabled && !nowActiveAndEnabled)
-                    OnDisable();
+                SyncEnableState();
             }
         }
 
-        public bool IsActiveAndEnabled => GameObject != null && GameObject.ActiveSelf && _enabled;
+        public bool IsActiveAndEnabled => !IsDestroyed && GameObject.ActiveInHierarchy && _enabled;
 
-        internal bool HasAwoken { get; set; }
-        internal bool HasStarted { get; set; }
+        internal void SyncEnableState()
+        {
+            if (IsDestroyed)
+                return;
 
-        protected Behaviour(string name = "Behaviour") : base(name) { }
+            bool shouldBeActive = GameObject.ActiveInHierarchy && _enabled;
+            if (shouldBeActive)
+            {
+                if (this is MonoBehaviour mono && !mono.HasAwoken)
+                    return;
 
-        public virtual void OnEnable() { }
-        public virtual void OnDisable() { }
+                OnEnable();
+            }
+            else
+            {
+                OnDisable();
+            }
+        }
+
+        internal override void MarkDestroyed()
+        {
+            if (IsDestroyed)
+                return;
+
+            bool wasActive = GameObject.ActiveInHierarchy && _enabled;
+            _enabled = false;
+
+            if (wasActive)
+                OnDisable();
+
+            base.MarkDestroyed();
+        }
+
+        protected virtual void OnEnable() { }
+        protected virtual void OnDisable() { }
+
+        internal override void InternalUpdate()
+        {
+            if (IsActiveAndEnabled)
+                Update();
+        }
+
+        internal override void InternalRender()
+        {
+            if (IsActiveAndEnabled)
+                Render();
+        }
+
+        protected virtual void Update() { }
+        protected virtual void Render() { }
     }
 }

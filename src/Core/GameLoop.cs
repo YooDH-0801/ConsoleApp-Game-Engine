@@ -63,6 +63,7 @@ namespace ConsoleApp_Game_Engine.Core
                 _input.Clear();
                 Console.ResetColor();
                 Console.CursorVisible = true;
+                Console.Clear();
             }
         }
     }
