@@ -11,6 +11,7 @@
 
         public override void OnEnter()
         {
+
             _playerX = Screen.Width / 2f;
             _playerY = Screen.Height / 2f;
             _score = 0;

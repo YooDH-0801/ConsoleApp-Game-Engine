@@ -3,6 +3,11 @@
     public abstract class Behaviour : Component
     {
         private bool _enabled = true;
+        private bool _isCurrentlyEnabledInLifecycle;
+
+        protected Behaviour() : base(null) { }
+
+        protected Behaviour(string? name) : base(name) { }
 
         public bool Enabled
         {
@@ -17,24 +22,46 @@
             }
         }
 
-        public bool IsActiveAndEnabled => !IsDestroyed && GameObject.ActiveInHierarchy && _enabled;
+        public bool IsActiveAndEnabled =>
+            !IsDestroyed &&
+            GameObject != null &&
+            !GameObject.IsDestroyed &&
+            GameObject.ActiveInHierarchy &&
+            _enabled;
 
         internal void SyncEnableState()
         {
-            if (IsDestroyed)
+            if (IsDestroyed || GameObject == null || GameObject.IsDestroyed)
+            {
+                if (_isCurrentlyEnabledInLifecycle)
+                {
+                    _isCurrentlyEnabledInLifecycle = false;
+                    OnDisable();
+                }
                 return;
+            }
 
             bool shouldBeActive = GameObject.ActiveInHierarchy && _enabled;
+
             if (shouldBeActive)
             {
+                // MonoBehaviour의 경우 Awake가 먼저 끝난 뒤 활성화 콜백이 흐르도록 조율
                 if (this is MonoBehaviour mono && !mono.HasAwoken)
                     return;
 
-                OnEnable();
+                if (!_isCurrentlyEnabledInLifecycle)
+                {
+                    _isCurrentlyEnabledInLifecycle = true;
+                    OnEnable();
+                }
             }
             else
             {
-                OnDisable();
+                if (_isCurrentlyEnabledInLifecycle)
+                {
+                    _isCurrentlyEnabledInLifecycle = false;
+                    OnDisable();
+                }
             }
         }
 
@@ -43,10 +70,11 @@
             if (IsDestroyed)
                 return;
 
-            bool wasActive = GameObject.ActiveInHierarchy && _enabled;
+            bool wasActiveLifecycle = _isCurrentlyEnabledInLifecycle;
             _enabled = false;
+            _isCurrentlyEnabledInLifecycle = false;
 
-            if (wasActive)
+            if (wasActiveLifecycle)
                 OnDisable();
 
             base.MarkDestroyed();

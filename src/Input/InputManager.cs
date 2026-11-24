@@ -7,29 +7,33 @@ namespace ConsoleApp_Game_Engine
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(int vKey);
 
+        // 중복 열거형 값(예: PrintScreen/Snapshot 등)을 제거해 순회 효율 최적화
+        private static readonly ConsoleKey[] _allKeys = GetUniqueConsoleKeys();
+
         private readonly HashSet<ConsoleKey> _previousHeld = new();
         private readonly HashSet<ConsoleKey> _currentHeld = new();
         private readonly HashSet<ConsoleKey> _downThisFrame = new();
         private readonly HashSet<ConsoleKey> _upThisFrame = new();
         private readonly List<ConsoleKeyInfo> _frameKeyInfos = new();
 
-        // 감시할 키 목록 (필요한 키를 추가)
-        private static readonly ConsoleKey[] _watchedKeys =
-        {
-        ConsoleKey.LeftArrow,
-        ConsoleKey.RightArrow,
-        ConsoleKey.UpArrow,
-        ConsoleKey.DownArrow,
-        ConsoleKey.W,
-        ConsoleKey.A,
-        ConsoleKey.S,
-        ConsoleKey.D,
-        ConsoleKey.Spacebar,
-        ConsoleKey.Enter,
-        ConsoleKey.Escape
-    };
-
         public IReadOnlyList<ConsoleKeyInfo> FrameKeyInfos => _frameKeyInfos;
+
+        private static ConsoleKey[] GetUniqueConsoleKeys()
+        {
+            var seenValues = new HashSet<int>();
+            var keys = new List<ConsoleKey>();
+
+            foreach (ConsoleKey key in Enum.GetValues<ConsoleKey>())
+            {
+                int vk = (int)key;
+                if (vk > 0 && seenValues.Add(vk))
+                {
+                    keys.Add(key);
+                }
+            }
+
+            return keys.ToArray();
+        }
 
         public void Poll()
         {
@@ -44,7 +48,6 @@ namespace ConsoleApp_Game_Engine
             _upThisFrame.Clear();
             _frameKeyInfos.Clear();
 
-            // 콘솔 버퍼에 쌓인 키 문자/정보는 비워서 콘솔 화면에 출력되지 않게 유지
             DrainConsoleBuffer();
 
             if (OperatingSystem.IsWindows())
@@ -68,12 +71,11 @@ namespace ConsoleApp_Game_Engine
 
         private void PollWindowsAsyncKeys()
         {
-            foreach (ConsoleKey key in _watchedKeys)
+            foreach (ConsoleKey key in _allKeys)
             {
-                int vk = ToVirtualKey(key);
-                if (vk == 0) continue;
-
+                int vk = (int)key;
                 bool isDownNow = (GetAsyncKeyState(vk) & 0x8000) != 0;
+
                 if (isDownNow)
                 {
                     _currentHeld.Add(key);
@@ -102,18 +104,5 @@ namespace ConsoleApp_Game_Engine
             {
             }
         }
-
-        private static int ToVirtualKey(ConsoleKey key) => key switch
-        {
-            ConsoleKey.LeftArrow => 0x25,
-            ConsoleKey.UpArrow => 0x26,
-            ConsoleKey.RightArrow => 0x27,
-            ConsoleKey.DownArrow => 0x28,
-            ConsoleKey.Spacebar => 0x20,
-            ConsoleKey.Enter => 0x0D,
-            ConsoleKey.Escape => 0x1B,
-            >= ConsoleKey.A and <= ConsoleKey.Z => (int)key,
-            _ => 0
-        };
     }
 }

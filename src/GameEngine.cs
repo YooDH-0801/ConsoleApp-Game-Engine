@@ -10,6 +10,7 @@ namespace ConsoleApp_Game_Engine
             var timeManager = new TimeManager();
             var inputManager = new InputManager();
             var screenManager = new ScreenManager(width: 128, height: 48);
+            var sceneManager = new SceneManager();
 
             Application.Bind(appManager);
             Time.Bind(timeManager);
@@ -18,11 +19,7 @@ namespace ConsoleApp_Game_Engine
 
             try
             {
-                // TODO:: 이거 하고 오브젝트 계열 구현
-                // 예시:
-                SceneManager.Register(new TitleScene());
-                SceneManager.Register(new PlayScene());
-                SceneManager.LoadScene("Title");
+                SceneBuilder.Build();
 
                 var loop = new GameLoop(appManager, timeManager, inputManager, screenManager);
                 loop.Run();
