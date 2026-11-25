@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace ConsoleApp_Game_Engine
+namespace ConsoleApp_GameEngine
 {
     public sealed class TimeManager
     {

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ConsoleApp_Game_Engine
+namespace ConsoleApp_GameEngine
 {
     public sealed class InputManager
     {

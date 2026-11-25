@@ -1,6 +1,6 @@
-﻿using ConsoleApp_Game_Engine.Core;
+﻿using ConsoleApp_GameEngine.Core;
 
-namespace ConsoleApp_Game_Engine
+namespace ConsoleApp_GameEngine
 {
     public class GameEngine
     {

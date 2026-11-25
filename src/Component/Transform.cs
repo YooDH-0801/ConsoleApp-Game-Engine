@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ConsoleApp_Game_Engine
+namespace ConsoleApp_GameEngine
 {
     public sealed class Transform : Component, IEnumerable<Transform>
     {

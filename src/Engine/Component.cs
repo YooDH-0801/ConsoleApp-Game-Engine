@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace ConsoleApp_Game_Engine
+namespace ConsoleApp_GameEngine
 {
     public abstract class Component : Object
     {

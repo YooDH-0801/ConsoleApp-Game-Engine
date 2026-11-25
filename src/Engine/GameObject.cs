@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp_Game_Engine
+﻿namespace ConsoleApp_GameEngine
 {
     public sealed class GameObject : Object
     {

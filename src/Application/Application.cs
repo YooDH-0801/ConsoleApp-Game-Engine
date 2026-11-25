@@ -1,6 +1,4 @@
-﻿using ConsoleApp_Game_Engine;
-
-namespace ConsoleApp_Game_Engine
+﻿namespace ConsoleApp_GameEngine
 {
     public static class Application
     {

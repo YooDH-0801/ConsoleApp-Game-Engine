@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace ConsoleApp_Game_Engine
+namespace ConsoleApp_GameEngine
 {
     public abstract class MonoBehaviour : Behaviour
     {

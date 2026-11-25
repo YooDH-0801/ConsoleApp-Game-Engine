@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.37710.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp-Game-Engine", "src\ConsoleApp-Game-Engine.csproj", "{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp-GameEngine", "src\ConsoleApp-GameEngine.csproj", "{B9A0DDF9-0DCF-B2DD-5720-0D16A0667835}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F490DBC0-7D5E-3C00-F871-BD3243D2CF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A0DDF9-0DCF-B2DD-5720-0D16A0667835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A0DDF9-0DCF-B2DD-5720-0D16A0667835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A0DDF9-0DCF-B2DD-5720-0D16A0667835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A0DDF9-0DCF-B2DD-5720-0D16A0667835}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp_Game_Engine
+﻿namespace ConsoleApp_GameEngine
 {
     public abstract class Object : IEquatable<Object>
     {
