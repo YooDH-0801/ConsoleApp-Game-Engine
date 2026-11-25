@@ -53,7 +53,7 @@
             Transform = new Transform
             {
                 Name = "Transform",
-                GameObject = this
+                GameObject = this,
             };
             _components.Add(Transform);
         }

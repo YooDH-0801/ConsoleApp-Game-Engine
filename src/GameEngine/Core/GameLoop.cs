@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
 
-namespace ConsoleApp_GameEngine.Core
+namespace ConsoleApp_GameEngine
 {
     public sealed class GameLoop
     {
